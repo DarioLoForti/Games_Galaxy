@@ -97,7 +97,7 @@ main {
     min-height: 90vh;
 
     .card {
-        background-image: url('../public/background.jpg');
+        background-image: url('../public/background.webp');
         border-radius: 20px;
         transition: border 0.3s, transform 0.3s;
         &:hover {

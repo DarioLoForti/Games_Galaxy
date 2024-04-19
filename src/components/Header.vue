@@ -31,6 +31,7 @@ export default {
                     <li class="px-3"><a href=""><router-link :to="{ name: 'home' }">Home</router-link></a></li>
                     <li class="px-3"><a href=""><router-link :to="{ name: 'genere' }">Genre</router-link></a></li>
                     <li class="px-3"><a href=""><router-link :to="{ name: 'piattaforme' }">Platforms</router-link></a></li>
+                    <li class="px-3"><a href=""><router-link :to="{ name: 'store' }">Store</router-link></a></li>
                 </ul>
             </div>
         </div>
@@ -42,7 +43,7 @@ export default {
   @use '../styles/generals.scss' as *;
   header{
     width: 100%;
-    background-image: url('../public/background.jpg');
+    background-image: url('../public/background.webp');
     .text-font{
       color: #BE6200;
     }

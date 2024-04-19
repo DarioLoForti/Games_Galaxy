@@ -45,7 +45,7 @@ export default {
     position: relative;
     bottom: 0;
     width: 100%;
-    background-image: url('../public/background.jpg');
+    background-image: url('../public/background.webp');
 
     .text-font{
       color: #BE6200;

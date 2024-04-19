@@ -46,12 +46,7 @@ export default {
       // Ritorna la data formattata come "gg-mm-aaaa"
       return `${day}-${month}-${year}`;
     },
-    // Metodo per mostrare la modale con i dettagli del gioco
-    showGameDetails(game) {
-        console.log("Dettagli del gioco:", game);
-      this.selectedGame = game;
-      this.showModal = true;
-    }
+    
   },
   created() {
     this.generegames();
@@ -140,7 +135,7 @@ main {
     min-height: 90vh;
 
     .card {
-      background-image: url('../public/background.jpg');
+      background-image: url('../public/background.webp');
       border-radius: 20px;
       transition: border 0.3s, transform 0.3s;
       &:hover {
@@ -183,7 +178,7 @@ main {
       padding: 0 !important;
     }
     .image{
-     background-image: url('../../public/controller3.jpg');
+     background-image: url('../../public/controller3.webp');
      background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

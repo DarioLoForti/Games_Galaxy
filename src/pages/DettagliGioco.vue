@@ -71,7 +71,7 @@ export default {
                     <h3 class="text-white">Trailer</h3>
                     <div class="d-flex flex-wrap" v-if="trailers.length > 0">
                         <div class="content px-3" v-for="trailer in trailers" :key="trailer.id">
-                            <iframe  :src="trailer.data.max" width="250px" height="250" frameborder="0" allowfullscreen></iframe>
+                            <iframe loading="lazy" :src="trailer.data.max" width="250px" height="250" frameborder="0" allowfullscreen></iframe>
 
                         </div>
                     </div>
