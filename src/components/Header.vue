@@ -20,12 +20,12 @@ export default {
           </router-link>
           </div>
         </div>
-        <div class="col-4 d-none d-md-block">
+        <div class="col-4 d-none d-lg-block">
           <div class="title text-font">
             <h1 class="text-center font">Games Galaxy</h1>
           </div>
         </div>
-        <div class="col-4 d-none d-md-block">
+        <div class="col-4 d-none d-lg-block">
             <div class="menu">
                 <ul class="d-flex justify-content-end align-items-cente mt-3 text-white">
                     <li class="px-3"><a href=""><router-link :to="{ name: 'home' }">Home</router-link></a></li>
@@ -35,7 +35,7 @@ export default {
                 </ul>
             </div>
         </div>
-        <div class="col-8 d-md-none text-end" >
+        <div class="col-md-8 d-lg-none text-end" >
           <ul class="d-flex justify-content-end align-items-cente mt-3 text-white">
             <li class="px-1"><a href=""><router-link :to="{ name: 'home' }">Home</router-link></a></li>
             <li class="px-1"><a href=""><router-link :to="{ name: 'genere' }">Genre</router-link></a></li>
@@ -85,7 +85,7 @@ export default {
     .misura-logo{
       width: 25%;
     }
-    @media (max-width: 767px) {
+    @media (max-width: 992px) {
       .misura-logo {
           width: 100px; 
       }

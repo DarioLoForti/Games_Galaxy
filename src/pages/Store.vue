@@ -38,8 +38,8 @@ export default {
                     <h2 class="text-center text-white py-3 fs-1">Store</h2>
                 </div>
                 <div class="col-12 d-flex flex-wrap pb-5">
-                    <div class="content p-3" v-for="(store, index) in combinedData" :key="index">
-                        <div class="card p-3" style="width: 18rem; height: 25rem; ">
+                    <div class="col-md-6 col-lg-3 content p-3" v-for="(store, index) in combinedData" :key="index">
+                        <div class="card p-3" >
                             <img loading="lazy" class="posterImg" :src="store.logo" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-white">Nome: <br>{{ store.name }}</h5>
@@ -62,7 +62,7 @@ main{
     background-repeat: no-repeat;
     background-size: cover;
     .card {
-        background-image: url('../public/background.jpg');
+        background-image: url('../public/background.webp');
         border-radius: 20px;
         transition: border 0.3s, transform 0.3s;
         &:hover {
@@ -75,6 +75,9 @@ main{
         a{
             text-decoration: none;
             color: gray;
+        }
+        img{
+            width: 100%;
         }
     }
     .font{ 
