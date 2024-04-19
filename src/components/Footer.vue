@@ -13,22 +13,22 @@ export default {
   <footer>
     <div class="container py-3">
       <div class="row">
-        <div class="col-4 d-flex justify-content-center">
+        <div class="col-lg-4 col-12 col-md-6 text-center text-lg-start">
             <ul>
                 <li><a href="">Chi Siamo</a></li>
                 <li><a href="">Dicono di noi</a></li>
                 <li><a href="">Sviluppatori</a></li>
             </ul>
         </div>
-        <div class="col-4 d-flex justify-content-center">
+        <div class="col-lg-4 col-12 col-md-6 text-center">
             <ul>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
                 <li><a href=""></a></li>
               </ul>
         </div>
-        <div class="col-4 d-flex justify-content-center">
-            <ul class="d-flex pt-4 ">
+        <div class="col-lg-4 col-12 col-md-6 text-center">
+            <ul class="d-flex justify-content-center pt-4 ">
                 <li><a href=""><i class="fa-brands fa-square-facebook fa-2xl" style="color: #ffffff;"></i></a></li>
                 <li class="px-4"><a href=""><i class="fa-brands fa-square-instagram fa-2xl" style="color: #ffffff;"></i></a></li>
                 <li><a href=""><i class="fa-brands fa-square-x-twitter fa-2xl" style="color: #ffffff;"></i></a></li>
