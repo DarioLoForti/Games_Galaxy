@@ -63,7 +63,7 @@ videogames(){
                 <div class="col-12">
                     <h2 class="text-center text-white pt-5 fs-1">Released this week </h2>
                 </div>
-                <div class="col-md-6 col-lg-4 content p-3" v-for="videogame, index in store.videogames" :key="index">
+                <div class="col-md-6 col-lg-3 content p-3" v-for="videogame, index in store.videogames" :key="index">
                     <div class="card p-3">
                         <img loading="lazy" class="posterImg" :src="videogame.background_image"  alt="...">
                         <div class="card-body">

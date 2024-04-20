@@ -83,13 +83,7 @@ main{
     .font{ 
         font-size: 60px;
     }
-    #myVideo {
-        position: absolute;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-      }
+   
 
     .image {
         background-image: url('../public/controller4.webp');
@@ -131,16 +125,10 @@ main{
     .image::after {
         right: 0;
     }
-    #myVideo {
-        position: relative;
-        right: 0;
-        bottom: 0;
-        min-width: 100%;
-        min-height: 100%;
-      }
+    
     
     .posterImg{
-        height: 150px;
+        height: 200px;
         width: 100%;
         border-radius: 20px;
         

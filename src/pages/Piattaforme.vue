@@ -29,7 +29,7 @@ export default {
     <div class="container">
         <div class="row">
             <div class="col-12 d-flex flex-wrap pt-5">
-                <div class="content p-3" v-for="platform, index in store.platforms" :key="index">
+                <div class="col-md-6 col-lg-3 content p-3" v-for="platform, index in store.platforms" :key="index">
                     <div class="card p-3" style="width: 18rem; ">
                         <div class="card-body">
                             <h3 class="card-title text-white text-center"> {{ platform.name }}</h3>
