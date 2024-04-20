@@ -1,12 +1,18 @@
 import{ reactive } from 'vue';
+import Developers from './pages/Developers.vue';
 export const store = reactive({
 
     UrlVideoGames: 'https://api.rawg.io/api/games?key=',
     videogames: [],
+    topsmonth: [],
+    topsyear: [],
     generegames: [],
 
     UrlPlatform: 'https://api.rawg.io/api/platforms?key=',
     platforms:[],
+
+    UrlDeveloper: 'https://api.rawg.io/api/developers?key=',
+    developers:[],
 
     UrlGenere: 'https://api.rawg.io/api/genres?key=',
     generelist: [],
@@ -18,6 +24,7 @@ export const store = reactive({
 
     filter: [],
     search: [],
+    games: [],
 
  
     

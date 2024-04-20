@@ -13,11 +13,12 @@ export default {
     },
     methods: {
         formatDate(dateStr) {
-            const parts = dateStr.split('-');
-            const day = parts[2];
-            const month = parts[1];
-            const year = parts[0];
-            return `${day}-${month}-${year}`;
+            if (!dateStr) return '';
+    const parts = dateStr.split('-');
+    const day = parts[2];
+    const month = parts[1];
+    const year = parts[0];
+    return `${day}-${month}-${year}`;
         },
         stars(vote) {
             const numStars = (vote).toFixed(0);
@@ -25,7 +26,10 @@ export default {
         },
         goBack() {
             this.$router.go(-1); 
-        }
+        },
+        formatPlatformNames(platforms) {
+        return platforms.map(platform => platform.platform.name).join(', ');
+    }
     },
     created() {
         const gameId = this.$route.params.id;
@@ -57,11 +61,24 @@ export default {
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <img class="posterImg" :src="game.background_image"  alt="...">
-                    <h2 class="text-white pt-5">Nome: {{ game.name }}</h2>
-                    <p class="text-white">Data Uscita: {{ formatDate(game.released) }}</p>
+                    <h2 class="text-white pt-5">Name: {{ game.name }}</h2>
+                    
+                    <p class="text-white">Released: {{ formatDate(game.released) }}</p>
                     <p class="text-white">Voto: <span class="stars">{{ stars(game.rating) }}</span></p>
                     <p class="text-white">Sito Web: <a :href="game.website" class="text-white">{{ game.website }}</a></p>
-                    <p class="text-white">Piattaforme: <br>{{ game.platforms.map(platform => platform.platform.name).join(', ') }}</p>
+
+                    <p class="text-white">Platforms:</p>
+            <ul class="text-white">
+                <li v-if="game.platforms.length > 0" v-for="(platform, index) in game.platforms" :key="platform.platform.id">
+                    <router-link :to="'/details/' + platform.platform.id" class="text-white">{{ platform.platform.name }}</router-link>
+                    <span v-if="index < game.platforms.length - 1">, </span>
+                </li>
+                <li v-else>No platforms available</li>
+            </ul>
+
+                    <p class="text-white">House Developer: <br>
+                        <router-link v-for="developer in game.developers" :key="developer.id" :to="'/houses/' + developer.id" class="text-white">{{ developer.name }}</router-link>
+                    </p>
                 </div>
                 <div class="col-md-12 col-lg-6">
                     <h3 class="text-white">Descrizione</h3>
@@ -92,7 +109,14 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     min-height: 90vh;
-
+ul{
+    list-style: none;
+    li{
+        a{
+            text-decoration: none;
+        }
+    }
+}
     .posterImg{
         width: 100%;
         border-radius: 20px;

@@ -3,30 +3,15 @@ import { store } from '../store.js';
 import axios from 'axios';
 
 export default {
-    name: 'Details',
+    name: 'Houses',
     data() {
         return {
             store,
-            currentPage: 1,
-            games: [],
-            platform: {},
-            
+            developer: {},
+            games: {},
         }
     },
     methods: {
-        generegames() {
-            const platformId = this.$route.params.id;
-            axios.get(`${store.UrlVideoGames}${store.keyApi}&platforms=${platformId}&page=${this.currentPage}`).then(response => {
-                this.games = response.data.results; 
-                this.scrollToTop();
-            })
-            .catch(error => {
-                console.error('Errore nel caricamento dei giochi della piattaforma:', error);
-            });
-        },
-    scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scorri la finestra verso l'alto in modo fluido
-    },
         formatDate(dateStr) {
             const parts = dateStr.split('-');
             const day = parts[2];
@@ -38,35 +23,29 @@ export default {
             const numStars = (vote).toFixed(0);
             return '★'.repeat(numStars) + '☆'.repeat(5 - numStars);
         },
+        goBack() {
+            this.$router.go(-1); 
+        },
         shortenPlatformNames(platforms) {
         const platformNames = platforms.map(platform => platform.platform.name);
         const platformString = platformNames.join(', ');
         return platformString.length > 50 ? platformString.substring(0, 50) + '...' : platformString;
     },
-    nextPage() {
-      this.currentPage++; // Incrementa il numero di pagina
-      this.generegames(); // Esegui la chiamata API per la pagina successiva
-    },
-    prevPage() {
-      if (this.currentPage > 1) {
-        this.currentPage--; // Decrementa il numero di pagina solo se non sei già alla prima pagina
-        this.generegames(); // Esegui la chiamata API per la pagina precedente
-      }
-    },
-    goBack() {
-            this.$router.go(-1); 
-        }
     },
     created() {
-        this.generegames();
-
-        let platformId = this.$route.params.id;
-        axios.get(`https://api.rawg.io/api/platforms/${platformId}?key=8939060ae5fa41198ef1597cbc4bdf81`).then(response => {
-                this.platform = response.data; 
+        const housesId = this.$route.params.id;
+        axios.get(`https://api.rawg.io/api/developers/${housesId}?key=8939060ae5fa41198ef1597cbc4bdf81`)
+            .then(response => {
+                this.developer = response.data;
             })
             .catch(error => {
                 console.error('Errore nel caricamento dei dettagli del gioco:', error);
             });
+
+            axios.get(`${store.UrlVideoGames}${store.keyApi}&developers=${housesId}`).then(response => {
+                this.games= response.data.results; // Aggiorna i giochi nel negozio
+            });
+
     }
 };
 </script>
@@ -75,13 +54,18 @@ export default {
     <main>
         <div class="container pt-5">
             <div class="row">
-                <div class="col-12 ">
-                    <h2 class="text-center text-white py-3 fs-1">{{ platform.name }}</h2></div>
-                <div class="col-12">
+                <div class="col-12 pb-5">
                     <button class="btn btn-secondary" @click="goBack">Torna indietro</button>
                 </div>
+                <div class="col-md-12 col-lg-6">
+                    <img class="posterImg" :src="developer.image_background"  alt="...">
+                    <h2 class="text-white pt-5">Nome: {{ developer.name }}</h2>                    
+                </div>
+                <div class="col-12">
+                    <h2 class="text-center text-white pt-5">Giochi</h2>
+                </div>
                 <div class="col-12 d-flex flex-wrap pt-5">
-                    <div class="col-md-12 col-lg-3 content p-3" v-for="(game, index) in games" :key="index">
+                    <div class="col-md-12 col-lg-3 content p-3" v-for="game, index in this.games" :key="index">
                         <div class="card p-3">
                             <img class="posterImg" :src="game.background_image" alt="...">
                             <div class="card-body">
@@ -94,12 +78,9 @@ export default {
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
-        <div class="text-center py-4" v-if="this.games.length > 0">
-            <button class="btn btn-secondary me-4" @click="prevPage">Pagina precedente</button>
-            <button class="btn btn-secondary" @click="nextPage">Pagina successiva</button>
-          </div>
     </main>
 </template>
 <style lang="scss" scoped>
@@ -126,11 +107,11 @@ main {
         
     }
 
-    .posterImg {
-        height: 150px;
+    .posterImg{
         width: 100%;
         border-radius: 20px;
-    }
+        
+       }
     .stars{
         color: gold;
        }

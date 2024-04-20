@@ -26,12 +26,47 @@ export default {
 
     return `${currentDate},${nextWeekDate}`;
 },
+
+getMonth() {
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    
+    // Primo giorno del mese corrente
+    const firstDayOfMonth = `${yyyy}-${mm}-01`;
+
+    // Ultimo giorno del mese corrente
+    const lastDayOfMonth = new Date(yyyy, mm, 0);
+    const lastDayOfMonthFormatted = `${yyyy}-${mm}-${String(lastDayOfMonth.getDate()).padStart(2, '0')}`;
+
+    return `${firstDayOfMonth},${lastDayOfMonthFormatted}`;
+},
  
 videogames(){
     let data = this.getDates(); 
     axios.get(`${store.UrlVideoGames}${store.keyApi}&dates=${data}`).then(response =>{
         store.videogames = response.data.results;
     }).catch(error => {
+        console.error("Errore nella richiesta videogames:", error);
+    });
+},
+
+topmonth(){
+    let month = this.getMonth(); 
+    axios.get(`${store.UrlVideoGames}${store.keyApi}&dates=${month}&ordering=-rating&page_size=8`).then(response =>{
+        store.topsmonth = response.data.results;
+    }).catch(error => {
+        console.error("Errore nella richiesta videogames:", error);
+    });
+},
+
+topyear() {
+    let year = new Date().getFullYear(); // Ottieni l'anno corrente
+    axios.get(`${store.UrlVideoGames}${store.keyApi}&dates=${year}-01-01,${year}-12-31&ordering=-rating&page_size=8`)
+    .then(response => {
+        store.topsyear = response.data.results;
+    })
+    .catch(error => {
         console.error("Errore nella richiesta videogames:", error);
     });
 },
@@ -43,9 +78,10 @@ videogames(){
    
    },
    created(){
-  this.getDates();
+    this.getDates();
     this.videogames();
-  
+    this.topmonth();
+    this.topyear();
    }
 }
 </script>
@@ -97,6 +133,42 @@ videogames(){
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center text-white pt-5 fs-1">Top of the month </h2>
+                </div>
+                <div class="col-md-6 col-lg-3 content p-3" v-for="top, index in store.topsmonth" :key="index">
+                    <div class="card p-3">
+                        <img loading="lazy" class="posterImg" :src="top.background_image"  alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Nome: <br>{{ top.name }}</h5>
+                            <h5 class="card-title text-white">Rilascio: <br>{{ top.released }}</h5>
+                            <h6 class="text-white">Voto: <span class="stars">{{ stars(top.rating) }}</span></h6>
+                            <a :href="'/dettagli/' + top.id" class="btn btn-secondary">Dettagli</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center text-white pt-5 fs-1">Top of the year </h2>
+                </div>
+                <div class="col-md-6 col-lg-3 content p-3" v-for="top, index in store.topsyear" :key="index">
+                    <div class="card p-3">
+                        <img loading="lazy" class="posterImg" :src="top.background_image"  alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">Nome: <br>{{ top.name }}</h5>
+                            <h5 class="card-title text-white">Rilascio: <br>{{ top.released }}</h5>
+                            <h6 class="text-white">Voto: <span class="stars">{{ stars(top.rating) }}</span></h6>
+                            <a :href="'/dettagli/' + top.id" class="btn btn-secondary">Dettagli</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 </template>
 <style lang="scss" scoped>
@@ -119,7 +191,7 @@ main{
         }
         a{
             text-decoration: none;
-            color: gray;
+            
         }
     }
     .font{ 

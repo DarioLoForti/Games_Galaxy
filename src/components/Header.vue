@@ -28,10 +28,11 @@ export default {
         <div class="col-4 d-none d-lg-block">
             <div class="menu">
                 <ul class="d-flex justify-content-end align-items-cente mt-3 text-white">
-                    <li class="px-3"><a href=""><router-link :to="{ name: 'home' }">Home</router-link></a></li>
-                    <li class="px-3"><a href=""><router-link :to="{ name: 'genere' }">Genre</router-link></a></li>
-                    <li class="px-3"><a href=""><router-link :to="{ name: 'piattaforme' }">Platforms</router-link></a></li>
-                    <li class="px-3"><a href=""><router-link :to="{ name: 'store' }">Store</router-link></a></li>
+                    <li class="px-2"><a href=""><router-link :to="{ name: 'home' }">Home</router-link></a></li>
+                    <li class="px-2"><a href=""><router-link :to="{ name: 'genere' }">Genre</router-link></a></li>
+                    <li class="px-2"><a href=""><router-link :to="{ name: 'piattaforme' }">Platforms</router-link></a></li>
+                    <li class="px-2"><a href=""><router-link :to="{ name: 'store' }">Store</router-link></a></li>
+                    <li class="px-2"><a href=""><router-link :to="{ name: 'developers' }">Developers</router-link></a></li>
                 </ul>
             </div>
         </div>
@@ -43,6 +44,7 @@ export default {
             <ul class="d-flex justify-content-end align-items-cente mt-3 text-white">
             <li class="px-1"><a href=""><router-link :to="{ name: 'piattaforme' }">Platforms</router-link></a></li>
             <li class="px-1"><a href=""><router-link :to="{ name: 'store' }">Store</router-link></a></li>
+            <li class="px-1"><a href=""><router-link :to="{ name: 'developers' }">Developers</router-link></a></li>
         </ul>
       </div>
       </div>

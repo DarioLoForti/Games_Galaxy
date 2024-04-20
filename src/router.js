@@ -5,6 +5,8 @@ import Genere from './pages/Genere.vue';
 import DettagliGioco from './pages/DettagliGioco.vue';
 import Details from './pages/Details.vue';
 import Store from './pages/Store.vue';
+import Developers from './pages/Developers.vue';
+import Houses from './pages/Houses.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -38,6 +40,16 @@ const router = createRouter({
             path: '/store', 
             name: 'store',
             component: Store
+        },
+        {
+            path: '/developers', 
+            name: 'developers',
+            component: Developers
+        },
+        {
+            path: '/houses/:id', 
+            name: 'houses',
+            component: Houses
         },
     ]
 });
