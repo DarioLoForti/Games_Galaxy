@@ -7,7 +7,6 @@ export default {
     data() {
         return {
             store,
-            currentPage: 1 // Inizialmente la pagina è 1
         }
     },
     methods: {
@@ -18,32 +17,27 @@ export default {
         }
     },
     created() {
-        // this.generegames();
-        // this.listgenere();
         this.platform();
     }
 }
 </script>
 <template lang="">
    <main>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex flex-wrap pt-5">
-                <div class="col-md-6 col-lg-3 content p-3" v-for="platform, index in store.platforms" :key="index">
-                    <div class="card p-3" style="width: 18rem; ">
-                        <div class="card-body">
-                            <h3 class="card-title text-white text-center"> {{ platform.name }}</h3>
-                            <h5 class="text-center pt-3"><a :href="'/details/' + platform.id">View video Games</a></h5>
-                            <h6 class="text-center text-white pt-3">Count: {{ platform.games_count }}</h6>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 d-flex flex-wrap pt-5">
+                    <div class="col-md-12 col-lg-3 content p-3" v-for="platform, index in store.platforms" :key="index">
+                        <div class="card p-3" >
+                            <div class="card-body">
+                                <h3 class="card-title text-white text-center"> {{ platform.name }}</h3>
+                                <h5 class="text-center pt-3"><a :href="'/details/' + platform.id">View video Games</a></h5>
+                                <h6 class="text-center text-white pt-3">Count: {{ platform.games_count }}</h6>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-       
-       
-
    </main>
     
 </template>
@@ -73,13 +67,5 @@ main {
             color: gray;
         }
     }
-    .posterImg{
-        height: 100%;
-        width: 100%;
-        
-       }
-    .stars{
-        color: gold;
-       }
 }
 </style>

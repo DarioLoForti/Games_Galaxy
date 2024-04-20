@@ -55,7 +55,7 @@ export default {
                 <div class="col-12 pb-5">
                     <button class="btn btn-secondary" @click="goBack">Torna indietro</button>
                 </div>
-                <div class="col-6">
+                <div class="col-md-12 col-lg-6">
                     <img class="posterImg" :src="game.background_image"  alt="...">
                     <h2 class="text-white pt-5">Nome: {{ game.name }}</h2>
                     <p class="text-white">Data Uscita: {{ formatDate(game.released) }}</p>
@@ -63,7 +63,7 @@ export default {
                     <p class="text-white">Sito Web: <a :href="game.website" class="text-white">{{ game.website }}</a></p>
                     <p class="text-white">Piattaforme: <br>{{ game.platforms.map(platform => platform.platform.name).join(', ') }}</p>
                 </div>
-                <div class="col-6">
+                <div class="col-md-12 col-lg-6">
                     <h3 class="text-white">Descrizione</h3>
                     <p class="text-white">{{ game.description }}</p>
                 </div>

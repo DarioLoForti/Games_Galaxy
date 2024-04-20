@@ -16,11 +16,15 @@ export default {
             const platformId = this.$route.params.id;
             axios.get(`${store.UrlVideoGames}${store.keyApi}&platforms=${platformId}&page=${this.currentPage}`).then(response => {
                 this.games = response.data.results; 
+                this.scrollToTop();
             })
             .catch(error => {
                 console.error('Errore nel caricamento dei giochi della piattaforma:', error);
             });
         },
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scorri la finestra verso l'alto in modo fluido
+    },
         formatDate(dateStr) {
             const parts = dateStr.split('-');
             const day = parts[2];
@@ -65,8 +69,8 @@ export default {
                     <button class="btn btn-secondary" @click="goBack">Torna indietro</button>
                 </div>
                 <div class="col-12 d-flex flex-wrap pt-5">
-                    <div class="content p-3" v-for="(game, index) in games" :key="index">
-                        <div class="card p-3" style="width: 18rem; height: 30rem;">
+                    <div class="col-md-12 col-lg-3 content p-3" v-for="(game, index) in games" :key="index">
+                        <div class="card p-3">
                             <img class="posterImg" :src="game.background_image" alt="...">
                             <div class="card-body">
                                 <h5 class="card-title text-white">Nome: <br>{{ game.name }}</h5>

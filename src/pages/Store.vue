@@ -128,13 +128,10 @@ main{
     
     
     .posterImg{
-        height: 200px;
+        max-height: 200px;
         width: 100%;
         border-radius: 20px;
         
-       }
-    .stars{
-        color: gold;
        }
     .console{
         width: 200px;

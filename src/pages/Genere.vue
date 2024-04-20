@@ -14,9 +14,14 @@ export default {
   methods: {
     generegames() {
       axios.get(`${store.UrlVideoGames}${store.keyApi}&genres=${store.selectedGenre}&page=${this.currentPage}&ordering=${store.filter}&search=${store.search}`).then(response => {
-        store.generegames = response.data.results; // Aggiorna i giochi nel negozio
+        store.generegames = response.data.results;
+        this.scrollToTop();
       });
     },
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' }); // Scorri la finestra verso l'alto in modo fluido
+    },
+ 
     stars(vote) {
       const numStars = (vote).toFixed(0);
       return '★'.repeat(numStars) + '☆'.repeat(5 - numStars);
@@ -62,7 +67,7 @@ export default {
           <div class="col-12 pt-5">
             <h5 class="type text-center fs-1">Filter your search</h5>
           </div>
-          <div class="col-4 ">
+          <div class="col-md-12 col-lg-4 ">
             <label class="text-white" for="type">Genre</label>
             <select class="form-select mt-3 " id="type" v-model="store.selectedGenre" @change="generegames">
               <option value="" selected>Selected Genre</option>
@@ -71,7 +76,7 @@ export default {
               </option>
             </select>
           </div>
-          <div class="col-4">
+          <div class="col-md-12 col-lg-4">
             <label class="text-white" for="type">Filter</label>
             <select class="form-select mt-3 " id="type" v-model="store.filter" @change="generegames">
               <option value="" selected>Filter</option>
@@ -86,13 +91,13 @@ export default {
               <option value="-rating">★ decrescente</option>
             </select>
           </div>
-          <div class="col-4 ">
+          <div class="col-md-12 col-lg-4 ">
             <label class="text-white" for="type">Title</label>
             <input class="form-control mt-3" type="text" placeholder="Search Title" name="search" id="search" v-model="store.search" @keyup.enter="generegames">
           </div>    
           <div class="col-12 d-flex flex-wrap pt-5">
-            <div class="content p-3" v-for="(game, index) in store.generegames" :key="index">
-              <div class="card p-3" style="width: 18rem; height: 25rem;">
+            <div class="col-md-12 col-lg-3  content p-3" v-for="(game, index) in store.generegames" :key="index">
+              <div class="card p-3">
                 <img class="posterImg" :src="game.background_image" alt="...">
                 <div class="card-body">
                   <h5 class="card-title text-white">Nome: <br>{{ game.name }}</h5>
@@ -105,7 +110,7 @@ export default {
           </div>
         </div>
       </div> 
-      <div class="container-fluid " v-if="store.generegames.length <= 0">
+      <div class="container-fluid d-none d-lg-block " v-if="store.generegames.length <= 0">
         <div class="row">
           <div class="col-12 d-flex image">
             <div class="col-6">
