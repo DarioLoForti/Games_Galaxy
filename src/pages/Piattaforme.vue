@@ -7,18 +7,26 @@ export default {
     data() {
         return {
             store,
+            combinedData: []
         }
     },
     methods: {
         platform() {
-            axios.get(`${store.UrlPlatform}${store.keyApi}`).then(response => {
-                store.platforms = response.data.results; // Aggiorna i giochi nel negozio
-            });
+            axios.get(`${store.UrlPlatform}${store.keyApi}&page_size=40`).then(response => {
+                const platformData = response.data.results;
+                const platformsData = store.platforms;
+
+            // Combino i dati e le immagini in un unico array di oggetti
+            this.combinedData = platformData.map((store, index) => ({
+                ...store,
+                logo: platformsData[index].image // Aggiungo l'immagine dallo store.loghi corrispondente
+            }));
+        });
         }
     },
     created() {
         this.platform();
-    }
+    },
 }
 </script>
 <template lang="">
@@ -28,13 +36,14 @@ export default {
                 <div class="col-12">
                     <h2 class="text-center text-white py-3 fs-1">Platforms</h2>
                 </div>
-                <div class="col-12 d-flex flex-wrap ">
-                    <div class="col-md-12 col-lg-3 content p-3" v-for="platform, index in store.platforms" :key="index">
+                <div class="col-12 d-flex flex-wrap pb-3">
+                    <div class="col-md-12 col-lg-3 content p-3" v-for="(store, index) in combinedData" :key="index">
                         <div class="card p-3" >
+                            <img loading="lazy" class="posterImg" :src="store.logo" alt="...">
                             <div class="card-body">
-                                <h3 class="card-title text-white text-center"> {{ platform.name }}</h3>
-                                <h5 class="text-center pt-3"><a :href="'/details/' + platform.id">View video Games</a></h5>
-                                <h6 class="text-center text-white pt-3">Count: {{ platform.games_count }}</h6>
+                                <h3 class="card-title text-white text-center"> {{ store.name }}</h3>
+                                <h5 class="text-center pt-3"><a :href="'/details/' + store.id">View video Games</a></h5>
+                                <h6 class="text-center text-white pt-3">Count: {{ store.games_count }}</h6>
                             </div>
                         </div>
                     </div>
