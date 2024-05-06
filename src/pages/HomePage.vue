@@ -89,9 +89,14 @@ topyear() {
     <main>
         <div class="container-fluid">
             <div class="row">
-                <div class="col-12 image d-flex justify-content-center align-items-end">
+                <!-- <div class="col-12 image d-flex justify-content-center align-items-end">
                     <h1 class="text-white text-center font pb-2">The World of Video Games</h1>
-                </div>
+                </div> -->
+                
+                    <video autoplay muted loop id="myVideos" loading="lazy">
+                        <source src="../../public/video.mp4" type="video/mp4">
+                      </video>
+                
             </div>
         </div>  
         <div class="container">
@@ -203,7 +208,13 @@ main{
             font-size: 30px;
         }
     }
-
+    #myVideos {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: 100vh;
+      }
     
     #myVideo {
         position: absolute;

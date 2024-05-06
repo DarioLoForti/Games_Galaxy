@@ -11,6 +11,7 @@ export default {
 </script>
 <template lang="">
   <footer>
+    
     <div class="container py-3">
       <div class="row">
         <div class="col-lg-4 col-12 col-md-6 text-center text-lg-start">

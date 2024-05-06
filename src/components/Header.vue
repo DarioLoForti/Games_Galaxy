@@ -11,10 +11,10 @@ export default {
 </script>
 <template lang="">
   <header>
-    <div class="container py-3">
+    <div class="container-fluid py-3">
       <div class="row">
         <div class="col-4">
-          <div class="logo">
+          <div class="logo text-center">
             <router-link :to="{ name: 'home' }">
               <img class='misura-logo ' src="../../public/logo2.png" alt="">
           </router-link>
@@ -22,12 +22,12 @@ export default {
         </div>
         <div class="col-4 d-none d-lg-block">
           <div class="title text-font">
-            <h1 class="text-center font">Games Galaxy</h1>
+            <h1 class="text-center font mt-3">Games Galaxy</h1>
           </div>
         </div>
         <div class="col-4 d-none d-lg-block">
             <div class="menu">
-                <ul class="d-flex justify-content-end align-items-cente mt-3 text-white">
+                <ul class="d-flex justify-content-center align-items-cente mt-5 text-white">
                     <li class="px-2"><a href=""><router-link :to="{ name: 'home' }">Home</router-link></a></li>
                     <li class="px-2"><a href=""><router-link :to="{ name: 'genere' }">Genre</router-link></a></li>
                     <li class="px-2"><a href=""><router-link :to="{ name: 'piattaforme' }">Platforms</router-link></a></li>
